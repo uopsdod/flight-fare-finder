@@ -1,30 +1,24 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Plane } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
-export const Route = createFileRoute("/auth")({
-  head: () => ({
-    meta: [
-      { title: "Sign in · Flight Price Notifier" },
-      { name: "description", content: "Sign in or create an account for Flight Price Notifier." },
-    ],
-  }),
-  component: AuthPage,
-});
-
-function AuthPage() {
+export default function Auth({ initialMode = "signin" }: { initialMode?: "signin" | "signup" }) {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [mode, setMode] = useState<"signin" | "signup">(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    document.title = "Sign in · Flight Price Notifier";
+  }, []);
+
+  useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/app", replace: true });
+      if (data.session) navigate("/app", { replace: true });
     });
   }, [navigate]);
 
@@ -43,7 +37,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
       }
-      navigate({ to: "/app", replace: true });
+      navigate("/app", { replace: true });
     } catch (err: any) {
       toast.error(err?.message ?? "Authentication failed");
     } finally {
