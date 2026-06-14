@@ -90,7 +90,7 @@ function Landing() {
               icon={<XCircle className="h-5 w-5" />}
               titleZh="隨時取消"
               titleEn="Cancel anytime"
-              body="月訂閱制，不想用隨時停,沒有綁約。"
+              body="月訂閱制，不想用隨時停，沒有綁約。"
             />
           </div>
         </section>
