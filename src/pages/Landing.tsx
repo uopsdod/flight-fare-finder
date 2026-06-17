@@ -33,7 +33,7 @@ export default function Landing() {
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
               background:
-                "radial-gradient(60% 50% at 50% 0%, oklch(0.55 0.25 295 / 0.35), transparent 70%)",
+                "radial-gradient(60% 50% at 50% 0%, oklch(0.53 0.12 260 / 0.30), transparent 70%)",
             }}
           />
           <div className="mx-auto max-w-4xl px-6 pt-24 pb-28 text-center fade-in-up">
