@@ -7,7 +7,7 @@ import { useAuthUser } from "@/components/ProtectedRoute";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL as string;
 
-type PlanName = "tokyo" | "seoul";
+type PlanName = "tokyo" | "seoul" | "london";
 
 interface Plan {
   plan_name: PlanName;
@@ -19,6 +19,7 @@ interface Plan {
 const PLANS: Plan[] = [
   { plan_name: "tokyo", label: "台北 ✈ 東京", route: "TPE-TYO", hint: 9325 },
   { plan_name: "seoul", label: "台北 ✈ 首爾", route: "TPE-SEL", hint: 5989 },
+  { plan_name: "london", label: "台北 ✈ 倫敦", route: "TPE-LON", hint: 30924 },
 ];
 
 interface Subscription {
@@ -38,7 +39,7 @@ export default function Dashboard() {
 
   const [subs, setSubs] = useState<Record<string, Subscription>>({});
   const [loading, setLoading] = useState(true);
-  const [inputs, setInputs] = useState<Record<PlanName, string>>({ tokyo: "", seoul: "" });
+  const [inputs, setInputs] = useState<Record<PlanName, string>>({ tokyo: "", seoul: "", london: "" });
   const [saving, setSaving] = useState<PlanName | null>(null);
   const [error, setError] = useState<string | null>(null);
 
